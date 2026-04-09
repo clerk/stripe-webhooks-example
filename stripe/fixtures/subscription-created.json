@@ -1,0 +1,63 @@
+{
+	"_meta": {
+		"template_version": 0
+	},
+	"fixtures": [
+		{
+			"name": "customer",
+			"path": "/v1/customers",
+			"method": "post",
+			"params": {
+				"name": "Test Customer",
+				"email": "nick.scott@clerk.dev"
+			}
+		},
+		{
+			"name": "product",
+			"path": "/v1/products",
+			"method": "post",
+			"params": {
+				"name": "Pro Plan"
+			}
+		},
+		{
+			"name": "price",
+			"path": "/v1/prices",
+			"method": "post",
+			"params": {
+				"unit_amount": 1000,
+				"currency": "usd",
+				"recurring[interval]": "month",
+				"product": "${product:id}"
+			}
+		},
+		{
+			"name": "payment_method",
+			"path": "/v1/payment_methods",
+			"method": "post",
+			"params": {
+				"type": "card",
+				"card[token]": "tok_visa"
+			}
+		},
+		{
+			"name": "attach_pm",
+			"path": "/v1/payment_methods/${payment_method:id}/attach",
+			"method": "post",
+			"params": {
+				"customer": "${customer:id}"
+			}
+		},
+		{
+			"name": "subscription",
+			"path": "/v1/subscriptions",
+			"method": "post",
+			"params": {
+				"customer": "${customer:id}",
+				"items[0][price]": "${price:id}",
+				"default_payment_method": "${payment_method:id}",
+				"metadata[clerk_org_id]": "org_3C86AvzTlJgh8cXDc9uh4JpzU5a"
+			}
+		}
+	]
+}

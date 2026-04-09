@@ -1,27 +1,31 @@
 {
-  "name": "billing-webhooks",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "16.2.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.2.0",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "typescript": "^5"
-  },
-  "ignoreScripts": [
-    "sharp",
-    "unrs-resolver"
-  ],
-  "trustedDependencies": [
-    "sharp",
-    "unrs-resolver"
-  ]
+	"name": "billing-webhooks",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"packageManager": "bun@1.3.11",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"stripe:sub:create": "stripe fixtures stripe/fixtures/subscription-created.json",
+		"stripe:sub:delete": "stripe fixtures stripe/fixtures/subscription-deleted.json"
+	},
+	"dependencies": {
+		"@clerk/nextjs": "^7.0.12",
+		"next": "16.2.3",
+		"stripe": "^22.0.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.0",
+		"@tailwindcss/postcss": "^4.2.2",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"postcss": "^8.5.9",
+		"tailwindcss": "^4.2.2",
+		"typescript": "^5"
+	},
+	"trustedDependencies": [
+		"@clerk/shared"
+	]
 }
