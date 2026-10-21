@@ -12,7 +12,7 @@
 		"stripe:sub:delete": "stripe fixtures stripe/fixtures/subscription-deleted.json"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^7.9.18",
+		"@clerk/nextjs": "^7.9.17",
 		"next": "^16.4.2",
 		"react": "^19.3.1",
 		"react-dom": "^19.3.1",
