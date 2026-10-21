@@ -8,16 +8,16 @@ const UPGRADE_MAX_ALLOWED_MEMBERSHIPS = 10
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET
 
-if (!STRIPE_SECRET_KEY) {
-	throw new Error('STRIPE_SECRET_KEY is not set')
-}
-
-const stripe = new Stripe(STRIPE_SECRET_KEY)
-
 export async function POST(req: NextRequest) {
+	if (!STRIPE_SECRET_KEY) {
+		throw new Error('STRIPE_SECRET_KEY is not set')
+	}
+
 	if (!STRIPE_WEBHOOK_SECRET) {
 		throw new Error('STRIPE_WEBHOOK_SECRET is not set')
 	}
+
+	const stripe = new Stripe(STRIPE_SECRET_KEY)
 
 	const body = await req.text()
 	const signature = req.headers.get('stripe-signature')
