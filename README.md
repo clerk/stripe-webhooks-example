@@ -59,7 +59,9 @@ Edit `stripe/fixtures/subscription-created.json` and `stripe/fixtures/subscripti
 
 ```bash
 stripe login
-stripe listen --forward-to localhost:3000/api/stripe/webhooks
+stripe listen \
+  --events customer.subscription.created,customer.subscription.updated,customer.subscription.deleted \
+  --forward-to localhost:3000/api/stripe/webhooks
 ```
 
 Copy the `whsec_...` secret it prints and paste it into `.env.local` as `STRIPE_WEBHOOK_SECRET`. Restart the dev server.
